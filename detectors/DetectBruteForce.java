@@ -1,5 +1,9 @@
-public class DetectBruteForce {
-    public String ip;
+public class DetectBruteForce implements ThreatDetector {
+    private int attempts = 0; 
+
+    public String execute(String logLine) {
+        return checkSeverity(attempts);
+    }
 
     public String Threshold (int answersPerIp) {
         if (answersPerIp > 10) {

@@ -1,4 +1,4 @@
-public class LogENtry {
+public class LogEntry {
     private String requestUrl;
 
     public LogEntry(String requestUrl) {
