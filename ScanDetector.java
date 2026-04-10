@@ -10,7 +10,6 @@ class LogEntry {
         this.userAgent = userAgent;
         this.httpCode = httpCode;
     }
-
     public String getRequestUrl() { return requestUrl; }
     public String getUserAgent() { return userAgent; }
     public int getHttpCode() { return httpCode; }
