@@ -10,4 +10,6 @@ Pour lancer :
 3. Optionnel : préciser un fichier de logs, par exemple : `java -cp src Main ressources/access_log_clean.txt`
 
 ## Web
-Ouvrir `web/index.html` dans un navigateur et charger un fichier de logs au format Apache.
+1. Ouvrir `web/index.html` dans un navigateur.
+2. Choisir un fichier de logs Apache `.txt`.
+3. L'application affiche le dashboard, les tableaux de statistiques et la détection de menaces.

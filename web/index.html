@@ -3,23 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Analyseur de logs</title>
+  <title>Analyseur de logs Apache</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Analyseur de logs web</h1>
-    <p>Charger un fichier de logs Apache et afficher les statistiques.</p>
+    <header>
+      <h1>Analyseur de logs Apache</h1>
+      <p>Charge un fichier de logs Apache et analyse les statistiques, les menaces, et les comportements suspects.</p>
+    </header>
 
     <div class="controls">
-      <label for="logFile">Fichier de logs :</label>
-      <input type="file" id="logFile" accept=".txt" />
+      <div class="file-field">
+        <label for="logFile">Fichier de logs :</label>
+        <input type="file" id="logFile" accept=".txt" />
+      </div>
       <button id="analyseBtn">Analyser</button>
     </div>
+
+    <div id="status" class="panel hidden"></div>
 
     <div id="summary" class="panel hidden">
       <h2>Résumé</h2>
       <div id="stats"></div>
+    </div>
+
+    <div id="threats" class="panel hidden">
+      <h2>Détection de menaces</h2>
+      <table id="threatTable"></table>
     </div>
 
     <div id="tables" class="panel hidden">
