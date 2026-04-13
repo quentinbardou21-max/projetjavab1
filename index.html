@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analyseur de logs</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Analyseur de logs web</h1>
+    <p>Charger un fichier de logs Apache et afficher les statistiques.</p>
+
+    <div class="controls">
+      <label for="logFile">Fichier de logs :</label>
+      <input type="file" id="logFile" accept=".txt" />
+      <button id="analyseBtn">Analyser</button>
+    </div>
+
+    <div id="summary" class="panel hidden">
+      <h2>Résumé</h2>
+      <div id="stats"></div>
+    </div>
+
+    <div id="tables" class="panel hidden">
+      <h2>Tableaux</h2>
+      <section>
+        <h3>Top 10 IPs</h3>
+        <table id="topIps"></table>
+      </section>
+      <section>
+        <h3>Top 10 URLs</h3>
+        <table id="topUrls"></table>
+      </section>
+      <section>
+        <h3>Top 5 User Agents</h3>
+        <table id="topAgents"></table>
+      </section>
+      <section>
+        <h3>Codes HTTP</h3>
+        <table id="httpCodes"></table>
+      </section>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
