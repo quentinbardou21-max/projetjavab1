@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.List;
+
 public class Dashboard {
     public void afficher(List<LogEntry> entries) {
         System.out.println("========== DASHBOARD ==========");

@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -21,7 +22,8 @@ public class LogParser {
         if (m.matches()) {
             String ip = m.group(1);
             String user = m.group(2);
-            LocalDateTime timestamp = LocalDateTime.parse(m.group(3), DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss Z", Locale.ENGLISH));
+            OffsetDateTime offsetTimestamp = OffsetDateTime.parse(m.group(3), DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss Z", Locale.ENGLISH));
+            LocalDateTime timestamp = offsetTimestamp.toLocalDateTime();
             String method = m.group(4);
             String url = m.group(5);
             String protocol = m.group(6);
