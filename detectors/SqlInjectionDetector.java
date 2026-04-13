@@ -9,7 +9,7 @@ public class SqlInjectionDetector implements ThreatDetector {
 
     @Override
     public String execute(String logLine) {
-        return analyze(java.util.Collections.singletonList(new LogEntry(extractRequestUrl(logLine))));
+        return analyze(java.util.Collections.singletonList(new ThreatLogEntry(extractRequestUrl(logLine))));
     }
 
     private String extractRequestUrl(String logLine) {
@@ -30,8 +30,8 @@ public class SqlInjectionDetector implements ThreatDetector {
         return logLine.trim();
     }
 
-    public String analyze(List<LogEntry> logs) {
-        for (LogEntry log : logs) {
+    public String analyze(List<ThreatLogEntry> logs) {
+        for (ThreatLogEntry log : logs) {
             String url = log.getRequestUrl();
             
             if (url != null) {

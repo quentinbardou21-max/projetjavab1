@@ -19,14 +19,14 @@ public class ScanDetector implements ThreatDetector {
         return analyze(java.util.Collections.singletonList(parseLogEntry(logLine)));
     }
 
-    private LogEntry parseLogEntry(String logLine) {
+    private ThreatLogEntry parseLogEntry(String logLine) {
         if (logLine == null || logLine.isBlank()) {
-            return new LogEntry("", "", "", 0);
+            return new ThreatLogEntry("", "", "", 0);
         }
 
         Matcher apacheMatcher = APACHE_ACCESS_LOG.matcher(logLine);
         if (apacheMatcher.matches()) {
-            return new LogEntry(
+            return new ThreatLogEntry(
                     apacheMatcher.group(1).trim(),
                     apacheMatcher.group(3).trim(),
                     apacheMatcher.group(5).trim(),
@@ -35,23 +35,23 @@ public class ScanDetector implements ThreatDetector {
 
         String[] parts = logLine.split("\\|", -1);
         if (parts.length >= 4) {
-            return new LogEntry(parts[0].trim(), parts[1].trim(), parts[2].trim(), parseHttpCode(parts[3].trim()));
+            return new ThreatLogEntry(parts[0].trim(), parts[1].trim(), parts[2].trim(), parseHttpCode(parts[3].trim()));
         }
 
         if (parts.length >= 3) {
-            return new LogEntry("", parts[0].trim(), parts[1].trim(), parseHttpCode(parts[2].trim()));
+            return new ThreatLogEntry("", parts[0].trim(), parts[1].trim(), parseHttpCode(parts[2].trim()));
         }
 
         parts = logLine.split(",", -1);
         if (parts.length >= 4) {
-            return new LogEntry(parts[0].trim(), parts[1].trim(), parts[2].trim(), parseHttpCode(parts[3].trim()));
+            return new ThreatLogEntry(parts[0].trim(), parts[1].trim(), parts[2].trim(), parseHttpCode(parts[3].trim()));
         }
 
         if (parts.length >= 3) {
-            return new LogEntry("", parts[0].trim(), parts[1].trim(), parseHttpCode(parts[2].trim()));
+            return new ThreatLogEntry("", parts[0].trim(), parts[1].trim(), parseHttpCode(parts[2].trim()));
         }
 
-        return new LogEntry("", logLine.trim(), "", 0);
+        return new ThreatLogEntry("", logLine.trim(), "", 0);
     }
 
     private int parseHttpCode(String value) {
@@ -62,8 +62,8 @@ public class ScanDetector implements ThreatDetector {
         }
     }
 
-    public String analyze(List<LogEntry> logs) {
-        for (LogEntry log : logs) {
+    public String analyze(List<ThreatLogEntry> logs) {
+        for (ThreatLogEntry log : logs) {
             if (log.getRequestUrl().matches(SENSITIVE_PATHS)) {
                 return "CRITICAL";
             }
