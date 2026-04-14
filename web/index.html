@@ -14,7 +14,6 @@
         <h1>Analyseur de logs Apache</h1>
         <p>Upload ton fichier Apache pour mesurer l’activité, détecter les anomalies et visualiser les menaces en temps réel.</p>
       </div>
-      <div class="hero-badge">Style CyberShield</div>
     </header>
 
     <main class="dashboard-grid">
@@ -29,7 +28,15 @@
         <div class="controls">
           <label for="logFile" class="input-label">Fichier de logs</label>
           <input type="file" id="logFile" accept=".txt" />
-          <button id="analyseBtn" class="action-btn">Analyser</button>
+
+          <label for="whitelistFile" class="input-label">White list optionnelle</label>
+          <input type="file" id="whitelistFile" accept=".txt" />
+          <p class="helper-text">Charge un fichier avec des IP (une ou plusieurs par ligne) pour exclure certaines adresses des règles de blocage.</p>
+
+          <div class="actions-row">
+            <button id="analyseBtn" class="action-btn">Analyser</button>
+            <button id="exportBtn" class="action-btn action-btn-ghost" disabled>Exporter le rapport</button>
+          </div>
         </div>
 
         <div id="status" class="status-panel hidden"></div>
@@ -45,6 +52,16 @@
         <div id="stats" class="stats-grid"></div>
       </section>
 
+      <section id="security" class="panel hidden">
+        <div class="panel-head">
+          <div>
+            <p class="panel-label">Sécurité</p>
+            <h2>Synthèse de protection</h2>
+          </div>
+        </div>
+        <div id="securityStats" class="stats-grid"></div>
+      </section>
+
       <section id="threats" class="panel hidden">
         <div class="panel-head">
           <div>
@@ -54,6 +71,18 @@
         </div>
         <div class="table-wrapper">
           <table id="threatTable"></table>
+        </div>
+      </section>
+
+      <section id="blockingPanel" class="panel hidden">
+        <div class="panel-head">
+          <div>
+            <p class="panel-label">Blocage</p>
+            <h2>Règles de blocage générées</h2>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table id="blockingRulesTable"></table>
         </div>
       </section>
 
@@ -86,6 +115,6 @@
     </main>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=20260414-5"></script>
 </body>
 </html>
