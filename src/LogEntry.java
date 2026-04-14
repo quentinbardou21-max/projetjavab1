@@ -64,8 +64,4 @@ public LogEntry(String ip, String user, LocalDateTime timestamp, String method, 
     this.userAgent = userAgent;
 }
 }
-    this.statusCode = statusCode;
-    this.responseSize = responseSize;
-    this.referer = referer;
-    this.userAgent = userAgent;
 
