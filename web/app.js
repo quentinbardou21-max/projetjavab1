@@ -139,11 +139,11 @@ function renderTables(entries) {
 }
 
 function detectScan(entries) {
-  const sensitivePaths = /(?i).*(\/admin|\/wp-login\.php|\/\.env|\/phpmyadmin|\/config\.yml|\/\.git\/config|\/backup\.sql).*/;
-  const attackTools = /(?i).*(sqlmap|nikto|nmap|dirbuster|gobuster).*/;
+  const sensitivePaths = /.*(\/admin|\/wp-login\.php|\/\.env|\/phpmyadmin|\/config\.yml|\/\.git\/config|\/backup\.sql).*/i;
+  const attackTools = /.*(sqlmap|nikto|nmap|dirbuster|gobuster).*/i;
 
-  const foundPath = entries.some(e => sensitivePaths.test(e.url));
-  const foundTool = entries.some(e => attackTools.test(e.agent));
+  const foundPath = entries.some(e => sensitivePaths.test(String(e.url)));
+  const foundTool = entries.some(e => attackTools.test(String(e.agent)));
   if (foundPath) {
     return { status: "CRITICAL", details: "Accès à des chemins sensibles ou d'administration." };
   }
@@ -168,8 +168,8 @@ function detectScan(entries) {
 }
 
 function detectSqlInjection(entries) {
-  const sqlRegex = /(?i).*(\'|%27|\"|%22|--|%2D%2D|\bUNION\b|\bSELECT\b|\bDROP\b|\bOR\b\s+1=1).*/;
-  const found = entries.some(e => sqlRegex.test(e.url));
+  const sqlRegex = /.*(\'|%27|\"|%22|--|%2D%2D|\bUNION\b|\bSELECT\b|\bDROP\b|\bOR\b\s+1=1).*/i;
+  const found = entries.some(e => sqlRegex.test(String(e.url)));
   if (found) {
     return { status: "HIGH", details: "Requête SQL suspecte détectée dans l'URL." };
   }
