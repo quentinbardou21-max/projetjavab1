@@ -1,0 +1,4 @@
+# IPs de confiance a ignorer (une IP par ligne)
+# Exemple:
+# 192.168.1.10
+# 10.0.0.1
